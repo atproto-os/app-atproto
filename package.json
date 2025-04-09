@@ -1,0 +1,11 @@
+{
+  "name": "app-atproto",
+  "private": true,
+  "version": "3.0.0-alpha.0",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/atprotoOS/app-atproto",
+  "author": {
+    "name": "dxlliv",
+    "url": "https://github.com/dxlliv"
+  }
+}
