@@ -1,15 +1,15 @@
 export default defineDesktopApp({
     id: "org.owdproject.atproto",
-    name: "Account",
+    title: "Account",
     category: "internet",
-    provides: "auth",
+    provides: {
+        name: "auth",
+        entry: "atproto",
+    },
     icon: "weui:at-filled",
     windows: {
         account: {
             component: () => import('./app/components/Window/WindowAtprotoAccount.vue'),
-            category: "internet",
-            title: "Login",
-            icon: "weui:at-filled",
             pinned: true,
             resizable: false,
             size: {
@@ -23,6 +23,11 @@ export default defineDesktopApp({
             },
         }
     },
+    entries: {
+        atproto: {
+            command: "atproto"
+        },
+    },
     commands: {
         atproto: (app: IApplicationController, args) => {
             if (['login', 'account'].includes(args[0])) {
@@ -30,7 +35,4 @@ export default defineDesktopApp({
             }
         }
     },
-    onLaunch: (app) => {
-        app.openWindow('account')
-    }
 })
