@@ -1,4 +1,4 @@
-export default defineDesktopApp({
+export default {
     id: "org.owdproject.atproto",
     title: "Account",
     category: "internet",
@@ -10,7 +10,6 @@ export default defineDesktopApp({
     windows: {
         account: {
             component: () => import('./app/components/Window/WindowAtprotoAccount.vue'),
-            pinned: true,
             resizable: false,
             size: {
                 width: 400,
@@ -35,4 +34,4 @@ export default defineDesktopApp({
             }
         }
     },
-})
+}
