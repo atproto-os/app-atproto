@@ -9,7 +9,7 @@ export default {
     icon: "weui:at-filled",
     windows: {
         account: {
-            component: () => import('./app/components/Window/WindowAtprotoAccount.vue'),
+            component: () => import('./runtime/components/Window/WindowAtprotoAccount.vue'),
             resizable: false,
             size: {
                 width: 400,
@@ -29,9 +29,7 @@ export default {
     },
     commands: {
         atproto: (app: IApplicationController, args) => {
-            if (['login', 'account'].includes(args[0])) {
-                app.openWindow("account")
-            }
+            app.openWindow("account")
         }
     },
 }

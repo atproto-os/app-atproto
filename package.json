@@ -1,11 +1,16 @@
 {
-  "name": "owd-app-atproto",
-  "private": true,
-  "version": "3.0.0-alpha.0",
+  "name": "@owdproject/app-atproto",
+  "version": "0.0.1",
+  "description": "ATProto App for your Open Web Desktop client",
+  "keywords": ["owd-client", "owd-apps", "owd-modules", "atproto"],
   "license": "GPL-3.0-or-later",
   "homepage": "https://github.com/atprotoOS/app-atproto",
   "author": {
     "name": "dxlliv",
     "url": "https://github.com/dxlliv"
+  },
+  "peerDependencies": {
+    "@owdproject/core": ">=3.0.0-alpha.6",
+    "@owdproject/module-atproto": "0.0.1"
   }
 }

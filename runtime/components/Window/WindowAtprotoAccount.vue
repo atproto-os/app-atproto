@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import {atprotoSignIn, atprotoSignOut} from "~owd-atproto/utils/utilsAtproto";
-import {useAtprotoAccountStore} from "~owd-atproto/stores/storeAtprotoAccount";
+import {atprotoSignIn, atprotoSignOut} from "@owdproject/module-atproto/runtime/utils/utilsAtproto";
+import {useAtprotoAccountStore} from "@owdproject/module-atproto/runtime/stores/storeAtprotoAccount";
+import AtprotoDesktopOwner from "../AtprotoDesktop/AtprotoDesktopOwner.vue";
+import {onBeforeMount, watch} from "vue"
 
 const props = defineProps<{
   window: IWindowController
@@ -38,21 +40,41 @@ function onServiceResolverChange() {
     atprotoAccountStore.handleResolver = customServiceResolver
   }
 }
+
+const accountLabel = computed(() => {
+  if (atprotoAccountStore.isAccountLogged) {
+    if (!atprotoAccountStore.account.avatar) {
+      return '?'
+    } else {
+      return undefined
+    }
+  }
+
+  return atprotoAccountStore.account.handle.charAt(0)
+})
+
+const accountAvatar = computed(() => {
+  if (atprotoAccountStore.isAccountLogged && atprotoAccountStore.account.avatar) {
+    return atprotoAccountStore.account.avatar
+  }
+
+  return undefined
+})
 </script>
 
 <template>
   <Window v-bind="$props" :content="{padded: true, centered: true}">
     <div class="flex flex-col h-full">
 
-      <AtprotoDesktopOwner />
+      <AtprotoDesktopOwner/>
 
       <div class="owd-atproto-login flex-1 text-center">
 
         <div>
           <div>
             <Avatar
-                :label="!atprotoAccountStore.isAccountLogged ? '?' : atprotoAccountStore.account.handle.charAt(0)"
-                :image="atprotoAccountStore.account ? atprotoAccountStore.account.avatar : undefined"
+                :label="accountLabel"
+                :image="accountAvatar"
                 size="xlarge" shape="circle"
             >
               <Skeleton
@@ -78,7 +100,7 @@ function onServiceResolverChange() {
       </div>
 
       <div class="text-center opacity-35">
-        {{$t('atproto.login.resolver.using')}} <span
+        {{ $t('atproto.login.resolver.using') }} <span
           :class="{'cursor-pointer': !atprotoAccountStore.isAccountLogged}"
           v-text="atprotoAccountStore.handleResolverHostname"
           @click="onServiceResolverChange()"
