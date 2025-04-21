@@ -3,6 +3,8 @@ import {atprotoSignIn, atprotoSignOut} from "@owdproject/module-atproto/runtime/
 import {useAtprotoAccountStore} from "@owdproject/module-atproto/runtime/stores/storeAtprotoAccount";
 import AtprotoDesktopOwner from "../AtprotoDesktop/AtprotoDesktopOwner.vue";
 import {onBeforeMount, watch} from "vue"
+import {computed} from "@vue/reactivity"
+import {useI18n} from "vue-i18n"
 
 const props = defineProps<{
   window: IWindowController
@@ -42,15 +44,11 @@ function onServiceResolverChange() {
 }
 
 const accountLabel = computed(() => {
-  if (atprotoAccountStore.isAccountLogged) {
-    if (!atprotoAccountStore.account.avatar) {
-      return '?'
-    } else {
-      return undefined
-    }
+  if ((atprotoAccountStore.isAccountLogged && !atprotoAccountStore.account.avatar) || !atprotoAccountStore.isAccountLogged) {
+    return '?'
   }
 
-  return atprotoAccountStore.account.handle.charAt(0)
+  return undefined
 })
 
 const accountAvatar = computed(() => {
