@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {atprotoSignIn, atprotoSignOut} from "@owdproject/module-atproto/runtime/utils/utilsAtproto";
 import {useAtprotoAccountStore} from "@owdproject/module-atproto/runtime/stores/storeAtprotoAccount";
 import AtprotoDesktopOwner from "../AtprotoDesktop/AtprotoDesktopOwner.vue";
 import {onBeforeMount, watch} from "vue"
@@ -9,6 +8,8 @@ import {useI18n} from "vue-i18n"
 const props = defineProps<{
   window: IWindowController
 }>()
+
+const atproto = useAtproto()
 
 const atprotoAccountStore = useAtprotoAccountStore()
 const {t} = useI18n()
@@ -58,6 +59,15 @@ const accountAvatar = computed(() => {
 
   return undefined
 })
+
+function onSignIn() {
+  atproto.signIn()
+}
+
+function onSignOut() {
+  atproto.signOut()
+  atprotoAccountStore.reset()
+}
 </script>
 
 <template>
@@ -84,14 +94,16 @@ const accountAvatar = computed(() => {
 
           <Button
               v-if="!atprotoAccountStore.isAccountLogged && !atprotoAccountStore.state.fetching"
-              size="large" @click="atprotoSignIn()"
+              size="large"
               v-text="$t('atproto.login.actions.login')"
+              @click="onSignIn"
           />
 
           <Button
               v-if="atprotoAccountStore.isAccountLogged"
-              size="large" @click="atprotoSignOut()"
+              size="large"
               v-text="$t('atproto.login.actions.logout')"
+              @click="onSignOut"
           />
         </div>
 

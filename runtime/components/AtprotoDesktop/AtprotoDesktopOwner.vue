@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import {routeAtprotoOS, routeBlueskyProfile} from "@owdproject/module-atproto/runtime/utils/utilsRoute";
-import {useAppConfig} from "nuxt/app"
+import {routeAtprotoOS, routeBlueskyProfile} from "@owdproject/module-atproto/runtime/utils/utilRoute";
+import {useRuntimeConfig} from "nuxt/app"
 
-const appConfig = useAppConfig()
+const runtimeConfig = useRuntimeConfig()
 </script>
 
 <template>
   <div class="owd-atproto-desktop-owner text-center">
     <a :href="routeAtprotoOS('/client')" target="_blank" class="text-2xl">
-      <span class="font-light" v-text="appConfig.atproto.owd.desktop.name"/>
-      <span class="font-bold" v-text="appConfig.atproto.owd.desktop.os"/>
+      <span class="font-light" v-text="runtimeConfig.public.atprotoDesktop.name.title"/>
+      <span class="font-bold" v-text="runtimeConfig.public.atprotoDesktop.name.affix"/>
     </a>
     <div
         class="-mt-1 mb-3 opacity-30"
@@ -19,18 +19,18 @@ const appConfig = useAppConfig()
       <div class="inline-flex">
         <div class="flex items-center pr-2">
           <a
-              :href="routeBlueskyProfile(appConfig.atproto.owd.owner.profile?.handle)"
+              :href="routeBlueskyProfile(runtimeConfig.public.atprotoDesktop.owner.profile?.handle)"
               target="_blank"
           >
             <Avatar
                 shape="circle"
-                :image="appConfig.atproto.owd.owner.profile?.avatar"
+                :image="runtimeConfig.public.atprotoDesktop.owner.profile?.avatar"
             />
           </a>
         </div>
         <div
             class="flex items-center"
-            v-text="appConfig.atproto.owd.owner.profile.displayName"
+            v-text="runtimeConfig.public.atprotoDesktop.owner.profile.displayName"
         />
       </div>
     </div>
