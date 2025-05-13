@@ -4,6 +4,7 @@ import AtprotoDesktopOwner from "../AtprotoDesktop/AtprotoDesktopOwner.vue";
 import {onBeforeMount, watch} from "vue"
 import {computed} from "@vue/reactivity"
 import {useI18n} from "vue-i18n"
+import { useAtproto } from '#imports'
 
 const props = defineProps<{
   window: IWindowController
