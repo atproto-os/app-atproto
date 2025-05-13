@@ -9,7 +9,7 @@ export default {
     icon: "weui:at-filled",
     windows: {
         account: {
-            component: () => import('./runtime/components/Window/WindowAtprotoAccount.vue'),
+            component: () => import('./components/Window/WindowAtprotoAccount.vue'),
             resizable: false,
             size: {
                 width: 400,
