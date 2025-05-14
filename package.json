@@ -8,7 +8,7 @@
     "owd-modules",
     "atproto"
   ],
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "homepage": "https://github.com/atproto-os/app-atproto",
   "author": {
     "name": "Open Web Desktop Team",
