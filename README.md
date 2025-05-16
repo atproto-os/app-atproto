@@ -13,7 +13,7 @@ This app for Open Web Desktop allows you to log-in using your AT Protocol accoun
 ## Installation
 
 ```bash
-nx run desktop:install-app --name=@owdproject/app-atproto
+owd install-app @owdproject/app-atproto
 ```
 
 ## Requirements
