@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">ATProto</h1>
 <h3 align="center">
-  ATProto App for Open Web Desktop.
+  AT Protocol App for Open Web Desktop.
 </h3>
 
 ## Overview
