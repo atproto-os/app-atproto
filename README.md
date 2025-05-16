@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">ATProto</h1>
 <h3 align="center">
-  ATProto App for your Open Web Desktop client.
+  ATProto App for Open Web Desktop.
 </h3>
 
 ## Overview
@@ -12,28 +12,13 @@ This app for Open Web Desktop allows you to log-in using your AT Protocol accoun
 
 ## Installation
 
-1.  Navigate to your client folder in your terminal:
+```bash
+nx run desktop:install-app --name=@owdproject/app-atproto
+```
 
-    ```bash
-    cd owd-client
-    ```
+## Requirements
 
-2.  Install the desktop module using npm or yarn:
-
-    ```bash
-    npm install @owdproject/app-atproto
-    ```
-
-3.  Register the application in your desktop configuration file:
-
-    ```typescript
-    // owd.config.ts
-    export default defineDesktopConfig({
-        apps: [
-            '@owdproject/app-atproto',
-        ]
-    })
-    ```
+- [@owdproject/module-atproto](https://github.com/atproto-os/module-atproto)
 
 ## License
 
