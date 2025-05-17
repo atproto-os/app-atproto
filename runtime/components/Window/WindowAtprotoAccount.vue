@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {useAtprotoAccountStore} from "@owdproject/module-atproto/runtime/stores/storeAtprotoAccount";
-import AtprotoDesktopOwner from "../AtprotoDesktop/AtprotoDesktopOwner.vue";
-import {onBeforeMount, watch} from "vue"
-import {computed} from "@vue/reactivity"
-import {useI18n} from "vue-i18n"
+import { useAtprotoAccountStore } from '@owdproject/module-atproto/runtime/stores/storeAtprotoAccount'
+import AtprotoDesktopOwner from '../AtprotoDesktop/AtprotoDesktopOwner.vue'
+import { onBeforeMount, watch } from 'vue'
+import { computed } from '@vue/reactivity'
+import { useI18n } from 'vue-i18n'
 import { useAtproto } from '#imports'
 
 const props = defineProps<{
@@ -13,7 +13,7 @@ const props = defineProps<{
 const atproto = useAtproto()
 
 const atprotoAccountStore = useAtprotoAccountStore()
-const {t} = useI18n()
+const { t } = useI18n()
 
 onBeforeMount(() => {
   if (atprotoAccountStore.isAccountLogged) {
@@ -21,13 +21,16 @@ onBeforeMount(() => {
   }
 })
 
-watch(() => atprotoAccountStore.account, (account) => {
-  if (atprotoAccountStore.isAccountLogged) {
-    props.window.actions.setTitleOverride(account.handle)
-  } else {
-    props.window.actions.resetTitleOverride()
-  }
-})
+watch(
+  () => atprotoAccountStore.account,
+  (account) => {
+    if (atprotoAccountStore.isAccountLogged) {
+      props.window.actions.setTitleOverride(account.handle)
+    } else {
+      props.window.actions.resetTitleOverride()
+    }
+  },
+)
 
 function onServiceResolverChange() {
   if (atprotoAccountStore.isAccountLogged) {
@@ -36,8 +39,8 @@ function onServiceResolverChange() {
   }
 
   const customServiceResolver = window.prompt(
-      t('atproto.login.resolver.prompt'),
-      atprotoAccountStore.handleResolver
+    t('atproto.login.resolver.prompt'),
+    atprotoAccountStore.handleResolver,
   )
 
   if (customServiceResolver) {
@@ -46,7 +49,11 @@ function onServiceResolverChange() {
 }
 
 const accountLabel = computed(() => {
-  if ((atprotoAccountStore.isAccountLogged && !atprotoAccountStore.account.avatar) || !atprotoAccountStore.isAccountLogged) {
+  if (
+    (atprotoAccountStore.isAccountLogged &&
+      !atprotoAccountStore.account.avatar) ||
+    !atprotoAccountStore.isAccountLogged
+  ) {
     return '?'
   }
 
@@ -54,7 +61,10 @@ const accountLabel = computed(() => {
 })
 
 const accountAvatar = computed(() => {
-  if (atprotoAccountStore.isAccountLogged && atprotoAccountStore.account.avatar) {
+  if (
+    atprotoAccountStore.isAccountLogged &&
+    atprotoAccountStore.account.avatar
+  ) {
     return atprotoAccountStore.account.avatar
   }
 
@@ -72,52 +82,57 @@ function onSignOut() {
 </script>
 
 <template>
-  <Window v-bind="$props" :content="{padded: true, centered: true}">
+  <Window v-bind="$props" :content="{ padded: true, centered: true }">
     <div class="flex flex-col h-full">
-
-      <AtprotoDesktopOwner/>
+      <AtprotoDesktopOwner />
 
       <div class="owd-atproto-login flex-1 text-center">
-
         <div>
           <div>
             <Avatar
-                :label="accountLabel"
-                :image="accountAvatar"
-                size="xlarge" shape="circle"
+              :label="accountLabel"
+              :image="accountAvatar"
+              size="xlarge"
+              shape="circle"
             >
               <Skeleton
-                  v-if="atprotoAccountStore.state.fetching"
-                  width="100%" height="100%" borderRadius="50%"
+                v-if="atprotoAccountStore.state.fetching"
+                width="100%"
+                height="100%"
+                borderRadius="50%"
               />
             </Avatar>
           </div>
 
           <Button
-              v-if="!atprotoAccountStore.isAccountLogged && !atprotoAccountStore.state.fetching"
-              size="large"
-              v-text="$t('atproto.login.actions.login')"
-              @click="onSignIn"
+            v-if="
+              !atprotoAccountStore.isAccountLogged &&
+              !atprotoAccountStore.state.fetching
+            "
+            size="large"
+            v-text="$t('atproto.login.actions.login')"
+            @click="onSignIn"
           />
 
           <Button
-              v-if="atprotoAccountStore.isAccountLogged"
-              size="large"
-              v-text="$t('atproto.login.actions.logout')"
-              @click="onSignOut"
+            v-if="atprotoAccountStore.isAccountLogged"
+            size="large"
+            v-text="$t('atproto.login.actions.logout')"
+            @click="onSignOut"
           />
         </div>
-
       </div>
 
       <div class="text-center opacity-35">
-        {{ $t('atproto.login.resolver.using') }} <span
-          :class="{'cursor-pointer': !atprotoAccountStore.isAccountLogged}"
+        {{ $t('atproto.login.resolver.using') }}
+        <span
+          :class="{
+            'cursor-pointer': !atprotoAccountStore.isAccountLogged,
+          }"
           v-text="atprotoAccountStore.handleResolverHostname"
           @click="onServiceResolverChange()"
-      />
+        />
       </div>
-
     </div>
   </Window>
 </template>
