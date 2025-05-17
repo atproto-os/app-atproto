@@ -6,6 +6,8 @@
   AT Protocol App for Open Web Desktop.
 </h3>
 
+<br />
+
 ## Overview
 
 This app for Open Web Desktop allows you to log-in using your AT Protocol account.
