@@ -13,11 +13,11 @@ const runtimeConfig = useRuntimeConfig()
     <a :href="routeAtprotoOS('/client')" target="_blank" class="text-2xl">
       <span
         class="font-light"
-        v-text="runtimeConfig.public.atprotoDesktop.name.title"
+        v-text="runtimeConfig.public.desktop.atprotoDesktop.name.title"
       />
       <span
         class="font-bold"
-        v-text="runtimeConfig.public.atprotoDesktop.name.affix"
+        v-text="runtimeConfig.public.desktop.atprotoDesktop.name.affix"
       />
     </a>
     <div
@@ -30,20 +30,20 @@ const runtimeConfig = useRuntimeConfig()
           <a
             :href="
               routeBlueskyProfile(
-                runtimeConfig.public.atprotoDesktop.owner.profile?.handle,
+                runtimeConfig.public.desktop.atprotoDesktop.owner.profile?.handle,
               )
             "
             target="_blank"
           >
             <Avatar
               shape="circle"
-              :image="runtimeConfig.public.atprotoDesktop.owner.profile?.avatar"
+              :image="runtimeConfig.public.desktop.atprotoDesktop.owner.profile?.avatar"
             />
           </a>
         </div>
         <div
           class="flex items-center"
-          v-text="runtimeConfig.public.atprotoDesktop.owner.profile.displayName"
+          v-text="runtimeConfig.public.desktop.atprotoDesktop.owner.profile.displayName"
         />
       </div>
     </div>
