@@ -4,18 +4,17 @@ import {
   addComponentsDir,
   addPlugin,
 } from '@nuxt/kit'
-import { registerTailwindPath } from '@owdproject/core'
+import { registerTailwindPath } from '@owdproject/kit-primevue/kit/registerTailwindPath'
 
 export default defineNuxtModule({
   meta: {
-    name: 'owd-app-atproto',
+    name: 'desktop-app-atproto',
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     {
       // add components
-
       addComponentsDir({
         path: resolve('./runtime/components'),
       })
@@ -23,13 +22,11 @@ export default defineNuxtModule({
 
     {
       // add plugins
-
       addPlugin(resolve('./runtime/plugin'))
     }
 
     {
       // configure tailwind
-
       registerTailwindPath(
         nuxt,
         resolve('./runtime/components/**/*.{vue,mjs,ts}'),
@@ -38,7 +35,6 @@ export default defineNuxtModule({
 
     {
       // import i18n
-
       nuxt.hook('i18n:registerModule', (register) => {
         register({
           // langDir path needs to be resolved
