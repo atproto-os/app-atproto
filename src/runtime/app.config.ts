@@ -4,7 +4,7 @@ export default {
   category: 'internet',
   provides: {
     name: 'auth',
-    command: 'atproto',
+    entry: 'atproto',
   },
   icon: 'weui:at-filled',
   windows: {

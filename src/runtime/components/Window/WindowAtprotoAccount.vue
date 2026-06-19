@@ -82,7 +82,7 @@ function onSignOut() {
 </script>
 
 <template>
-  <Window v-bind="$props" :content="{ padded: true, centered: true }">
+  <DesktopWindow :window="window" :content="{ padded: true, centered: true }">
     <div class="flex flex-col h-full">
       <AtprotoDesktopOwner />
 
@@ -134,7 +134,7 @@ function onSignOut() {
         />
       </div>
     </div>
-  </Window>
+  </DesktopWindow>
 </template>
 
 <style scoped lang="scss">

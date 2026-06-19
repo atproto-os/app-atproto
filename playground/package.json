@@ -1,0 +1,18 @@
+{
+  "name": "@owdproject/app-atproto-playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@owdproject/core": "workspace:*",
+    "@owdproject/app-atproto": "workspace:*",
+    "nuxt": "^4.4.4",
+    "@owdproject/module-atproto": "workspace:*",
+    "@owdproject/theme-win95": "workspace:*",
+    "@owdproject/app-terminal": "workspace:*"
+  }
+}
