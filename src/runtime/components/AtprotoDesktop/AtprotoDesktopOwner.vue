@@ -10,7 +10,7 @@ const runtimeConfig = useRuntimeConfig()
 
 <template>
   <div class="owd-atproto-desktop-owner text-center">
-    <a :href="routeAtprotoOS('/client')" target="_blank" class="text-2xl">
+    <a :href="routeAtprotoOS('/client')" target="_blank" class="text-2xl mt-4">
       <span
         class="font-light"
         v-text="runtimeConfig.public.desktop.atprotoDesktop.name.title"
@@ -21,11 +21,11 @@ const runtimeConfig = useRuntimeConfig()
       />
     </a>
     <div
-      class="-mt-1 mb-3 opacity-30"
+      class="mb-3 opacity-50"
       v-text="$t('atproto.desktop.instanceBy')"
     />
     <div>
-      <div class="inline-flex">
+      <div class="inline-flex mt-1">
         <div class="flex items-center pr-2">
           <a
             :href="
